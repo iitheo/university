@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/src
+/src/Nicosia.Users/obj
+/src/Nicosia.Users/bin
+/EWallet.Infrastructure/obj
+/EWallet.Infrastructure/bin
+/EWallet.Repositories/obj
+/EWallet.Repositories/bin
+/EWallet.WebApi/obj
+/EWallet.WebApi/bin
+/.idea/
+.idea/
+
