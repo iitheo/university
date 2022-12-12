@@ -33,7 +33,7 @@ namespace Nicosia.Users.Controllers
 
         [HttpPost]
         [Route("RegisterLecturer")]
-        public async Task<IActionResult> RegisterLecturer([FromBody] RegisterModel model)
+        public async Task<IActionResult> RegisterLecturer([FromBody] RegisterLecturerModel model)
         {
             var userExist = await _userManager.FindByNameAsync(model.UserName);
             if (userExist != null)
@@ -45,7 +45,11 @@ namespace Nicosia.Users.Controllers
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.UserName
+                UserName = model.UserName,
+                PhoneNumber = model.PhoneNumber,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                SocialInsuranceNumber = model.SocialInsuranceNumber
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
@@ -81,7 +85,10 @@ namespace Nicosia.Users.Controllers
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.UserName
+                UserName = model.UserName,
+                PhoneNumber = model.PhoneNumber,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
