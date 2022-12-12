@@ -46,7 +46,19 @@ The following is a list of requirements you are asked to implement:
 
 General Remark: For the endpoints you create, feel free to add appropriate options such as sorting, pagination, etc.
 
-### Local Development
+
+## What has been done
+* So far only user registration - lecturer or user(student) has been done
+
+
+## Things to be done
+* Remaining part of requirements
+* Containerizing the application
+* Using environment variables
+* Storing sensitive information using user secret
+
+
+## Local Development - How to start the app
 * Navigate into the project folder in src folder
 * Run migrations
 * Update database
