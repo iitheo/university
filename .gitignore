@@ -5,6 +5,8 @@
 /.vs/src
 /src/Nicosia.Users/obj
 /src/Nicosia.Users/bin
+/test/Nicosia.Users.Tests/obj
+/test/Nicosia.Users.Tests/bin
 /EWallet.Infrastructure/obj
 /EWallet.Infrastructure/bin
 /EWallet.Repositories/obj
