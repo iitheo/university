@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Nicosia.Users.Authentication;
@@ -23,4 +24,7 @@ public class RegisterModel
 
     [Required(ErrorMessage = "Password is required")]
     public string Password { get; set; }
+
+
+    public string SocialInsuranceNumber { get; set; }
 }

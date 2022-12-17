@@ -33,7 +33,7 @@ namespace Nicosia.Users.Controllers
 
         [HttpPost]
         [Route("RegisterLecturer")]
-        public async Task<IActionResult> RegisterLecturer([FromBody] RegisterLecturerModel model)
+        public async Task<IActionResult> RegisterLecturer([FromBody] RegisterModel model)
         {
             var userExist = await _userManager.FindByNameAsync(model.UserName);
             if (userExist != null)
@@ -68,11 +68,11 @@ namespace Nicosia.Users.Controllers
                 await _userManager.AddToRoleAsync(user, UserRoles.Lecturer);
             }
 
-            return Ok(new Response {Status = "Success", Message = "Admin user created successfully"});
+            return Ok(new Response {Status = "Success", Message = "Lecturer created successfully"});
         }
         
         [HttpPost]
-        [Route("Register")]
+        [Route("RegisterStudent")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var userExist = await _userManager.FindByNameAsync(model.UserName);
@@ -88,15 +88,27 @@ namespace Nicosia.Users.Controllers
                 UserName = model.UserName,
                 PhoneNumber = model.PhoneNumber,
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
+                SocialInsuranceNumber = "na"
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,new Response(){Status = "Error",Message = "User not created"});
             }
+            
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Student))
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Student));
+            
+            if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
 
-            return Ok(new Response {Status = "Success", Message = "User created successfully"});
+            if (await _roleManager.RoleExistsAsync(UserRoles.Student))
+            {
+                await _userManager.AddToRoleAsync(user, UserRoles.Student);
+            }
+
+            return Ok(new Response {Status = "Success", Message = "Student created successfully"});
         }
 
         [HttpPost]

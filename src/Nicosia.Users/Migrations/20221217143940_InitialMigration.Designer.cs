@@ -12,7 +12,7 @@ using Nicosia.Users.Data;
 namespace Nicosia.Users.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221212075543_InitialMigration")]
+    [Migration("20221217143940_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
